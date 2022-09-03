@@ -1,0 +1,11 @@
+.DS_Store*
+Thumbs.db*
+~*
+tmp/
+keys.json
+node_modules/
+.idea
+package-lock.json
+newrelic_agent.log
+build/
+.history
