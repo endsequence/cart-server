@@ -2,7 +2,8 @@ import { Products } from "../db/connection.js";
 
 export const resolvers = {
   Query: {
-    getProducts: (root) => {
+    getProducts: (root, args, context) => {
+      console.log({ context });
       return new Promise((resolve, reject) => {
         Products.find((err, products) => {
           if (err) reject(err);
@@ -10,7 +11,7 @@ export const resolvers = {
         });
       });
     },
-    findAProduct: (root, { id }) => {
+    findAProduct: (root, { id }, context) => {
       return new Promise((resolve, reject) => {
         Products.findOne({ _id: id }, (err, product) => {
           if (err) reject(err);

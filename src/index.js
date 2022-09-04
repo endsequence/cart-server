@@ -4,10 +4,11 @@ import { ApolloServer } from "apollo-server-express";
 import { resolvers } from "./data/resolvers.graphql";
 import { typeDefs } from "./data/schema.graphql";
 import { PORT } from "./config/config";
+import { reqContext } from "./utils";
 
 async function startApolloServer(typeDefs, resolvers) {
-  const server = new ApolloServer({ typeDefs, resolvers });
   const app = express();
+  const server = new ApolloServer({ typeDefs, resolvers, context: reqContext });
   await server.start();
   server.applyMiddleware({ app });
 
