@@ -1,16 +1,22 @@
 "use strict";
 const mongoose = require("mongoose");
 exports.productSchema = new mongoose.Schema({
-  name: {
+  title: {
     type: String,
   },
-  sku: {
+  description: {
     type: String,
   },
-  variant: {
+  price: {
+    type: Number,
+  },
+  brand: {
     type: String,
   },
-  images: {
+  thumbnail: {
+    type: String,
+  },
+  variants: {
     type: Array,
   },
 });

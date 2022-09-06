@@ -6,13 +6,15 @@ export const typeDefs = gql`
     id: ID
     customerId: String
     products: [CartProduct]
+    active: Boolean
+    token: String
   }
 
   type CartProduct {
-    name: String
+    title: String
     sku: String
     variant: String
-    images: [Image]
+    thumbnail: String
     qty: Int
   }
 
@@ -24,35 +26,26 @@ export const typeDefs = gql`
 
   type Product {
     id: ID
-    name: String
-    sku: String
-    variant: String
-    images: [Image]
+    title: String
+    description: String
+    price: Int
+    brand: String
+    thumbnail: String
+    variants: [Variant]
   }
 
-  type Image {
-    type: String
-    url: String
-  }
-
-  input ProductInput {
-    name: String
-    sku: String
-    variant: String
-    images: [ImageInput]
-  }
-
-  input ImageInput {
-    type: String
-    url: String
+  type Variant {
+    id: String
+    qty: Int
   }
 
   type Query {
     getProducts: [Product]
     findAProduct(id: String): Product
+    findCart: Cart
   }
 
   type Mutation {
-    addProduct(product: ProductInput): Product
+    addProductToCart(cart: CartInput): Cart
   }
 `;

@@ -1,4 +1,10 @@
-import { Products } from "../db/connection.js";
+import { ObjectId } from "mongodb";
+import { Products, Carts } from "../db/connection.js";
+import { createJwt } from "../utils/index";
+import {
+  addProductToCartResolver,
+  getCartResolver,
+} from "./resolvers/cart.resolvers.js";
 
 export const resolvers = {
   Query: {
@@ -11,6 +17,10 @@ export const resolvers = {
         });
       });
     },
+    findCart: (root, args, context) => {
+      console.log({ context });
+      return getCartResolver({ context });
+    },
     findAProduct: (root, { id }, context) => {
       return new Promise((resolve, reject) => {
         Products.findOne({ _id: id }, (err, product) => {
@@ -21,16 +31,9 @@ export const resolvers = {
     },
   },
   Mutation: {
-    addProduct: (root, { product }) => {
-      const { ...rest } = product;
-      const newProduct = new Products({ ...rest });
-
-      return new Promise((resolve, reject) => {
-        newProduct.save((err, product) => {
-          if (err) reject(err);
-          else resolve(product);
-        });
-      });
+    addProductToCart: (root, { cart }, context) => {
+      console.log({ context });
+      return addProductToCartResolver({ context, cartReq: cart });
     },
   },
 };

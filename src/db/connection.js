@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const { environment } = require("../config/config");
 const { productSchema } = require("./schema/productSchema.js");
+const { cartSchema } = require("./schema/cartSchema");
 const env = process.env.NODE_ENV || "development";
 
 mongoose.connect(environment[env].dbString, {
@@ -14,5 +15,6 @@ db.on("error", () => {
 });
 
 const Products = mongoose.model("Products", productSchema);
+const Carts = mongoose.model("Carts", cartSchema);
 
-export { Products };
+export { Products, Carts };
