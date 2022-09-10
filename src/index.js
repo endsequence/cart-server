@@ -1,10 +1,10 @@
 require("dotenv").config();
-import express from "express";
-import { ApolloServer } from "apollo-server-express";
-import { resolvers } from "./data/resolvers.graphql";
-import { typeDefs } from "./data/schema.graphql";
-import { PORT } from "./config/config";
-import { reqContext } from "./utils";
+const express = require("express");
+const { ApolloServer } = require("apollo-server-express");
+const { resolvers } = require("./data/resolvers.graphql");
+const { typeDefs } = require("./data/schema.graphql");
+const { PORT } = require("./config/config");
+const { reqContext } = require("./utils");
 
 async function startApolloServer(typeDefs, resolvers) {
   const app = express();

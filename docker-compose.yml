@@ -1,0 +1,22 @@
+version: "3"
+services:
+  login-app:
+    container_name: cart-app
+    image: umeshmahato/cart-app
+    restart: always
+    build: .
+    ports:
+      - "7500:7500"
+    links:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27018:27017"
+  mongo-seed:
+    build: ./mongo-seed
+    depends_on:
+      - mongo

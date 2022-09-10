@@ -1,12 +1,10 @@
-import { ObjectId } from "mongodb";
-import { Products, Carts } from "../db/connection.js";
-import { createJwt } from "../utils/index";
-import {
+const { Products } = require("../db/connection.js");
+const {
   addProductToCartResolver,
   getCartResolver,
-} from "./resolvers/cart.resolvers.js";
+} = require("./resolvers/cart.resolvers.js");
 
-export const resolvers = {
+exports.resolvers = {
   Query: {
     getProducts: (root, args, context) => {
       console.log({ context });

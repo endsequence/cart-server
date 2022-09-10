@@ -1,7 +1,6 @@
-import { gql } from "apollo-server-express";
+const { gql } = require("apollo-server-express");
 
-export const typeDefs = gql`
-
+exports.typeDefs = gql`
   type Cart {
     id: ID
     customerId: String

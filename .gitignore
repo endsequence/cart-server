@@ -9,3 +9,5 @@ package-lock.json
 newrelic_agent.log
 build/
 .history
+
+data/

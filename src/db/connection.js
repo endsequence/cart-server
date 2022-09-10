@@ -17,4 +17,4 @@ db.on("error", () => {
 const Products = mongoose.model("Products", productSchema);
 const Carts = mongoose.model("Carts", cartSchema);
 
-export { Products, Carts };
+module.exports = { Products, Carts };

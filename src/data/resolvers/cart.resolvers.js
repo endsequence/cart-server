@@ -1,10 +1,10 @@
-import { ObjectId } from "mongodb";
-import { Carts } from "../../db/connection.js";
-import {
+const { ObjectId } = require("mongodb");
+const { Carts } = require("../../db/connection.js");
+const {
   createJwt,
   lookupProductVariant,
   stripCartObject,
-} from "../../utils/index";
+} = require("../../utils/index");
 
 const tokenizedCart = (cart) => {
   const token = createJwt(cart.customerId, cart.id);
