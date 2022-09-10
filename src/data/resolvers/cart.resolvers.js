@@ -1,80 +1,57 @@
 import { ObjectId } from "mongodb";
-import { Carts, Products } from "../../db/connection.js";
-import { createJwt } from "../../utils/index";
+import { Carts } from "../../db/connection.js";
+import {
+  createJwt,
+  lookupProductVariant,
+  stripCartObject,
+} from "../../utils/index";
+
+const tokenizedCart = (cart) => {
+  const token = createJwt(cart.customerId, cart.id);
+  cart.token = token;
+  return cart;
+};
 
 const getCartResolver = async ({ context }) => {
-  return new Promise((resolve, reject) => {
-    const { customerId, cartId, expired } = context;
-    Carts.findOne({ _id: ObjectId(cartId) }, (err, cart) => {
-      if (err) reject(err);
-      else {
-        if (cart) {
-          if (expired) {
-            const newCustomerId = new ObjectId();
-            cart._id = new ObjectId();
-            cart.isNew = true;
-            cart.customerId = newCustomerId;
-            cart.save((err, c) => {
-              if (err) reject(err);
-              else {
-                const token = createJwt(newCustomerId, c.id);
-                c.token = token;
-                resolve(c);
-              }
-            });
-          } else {
-            const token = createJwt(customerId, cartId);
-            cart.token = token;
-            resolve(cart);
-          }
-        } else resolve(null);
-      }
-    });
-  });
+  const { customerId, cartId, expired } = context;
+  let cart = await Carts.findOne({ _id: ObjectId(cartId) });
+
+  if (!cart) return null;
+  if (expired) stripCartObject(cart, new ObjectId());
+
+  await cart.save();
+  return tokenizedCart(cart);
 };
 
 const addProductToCartResolver = async ({ context, cartReq }) => {
-  return new Promise((resolve, reject) => {
-    const { customerId, cartId, expired } = context;
-    Carts.findOne({ _id: ObjectId(cartId) }, (err, cart) => {
-      if (err) reject(err);
-      else {
-        const newCustomerId = new ObjectId();
-        if (cart) {
-          if (expired) {
-            cart._id = new ObjectId();
-            cart.isNew = true;
-            cart.customerId = newCustomerId;
-          }
-          cart.products.push({
-            sku: cartReq.sku,
-            variant: cartReq.variant,
-            qty: cartReq.qty,
-          });
-        } else {
-          cart = new Carts({
-            customerId: newCustomerId,
-            products: [
-              {
-                sku: cartReq.sku,
-                variant: cartReq.variant,
-                qty: cartReq.qty,
-              },
-            ],
-            active: true,
-          });
-        }
-        cart.save((err, c) => {
-          if (err) reject(err);
-          else {
-            const token = createJwt(expired ? newCustomerId : customerId, c.id);
-            c.token = token;
-            resolve(c);
-          }
-        });
-      }
+  const { customerId, cartId, expired } = context;
+  const product = await lookupProductVariant(cartReq);
+  if (!product) throw new Error("Product not found!");
+  const variant = product.variants.find((el) => el.id === cartReq.variant);
+  console.log({ product, variant });
+  if (variant.qty < cartReq.qty)
+    throw new Error("Product inventory not available!");
+
+  const newCustomerId = new ObjectId();
+  let cart = await Carts.findOne({ _id: ObjectId(cartId) });
+  if (cart) {
+    if (expired) stripCartObject(cart, newCustomerId);
+  } else {
+    cart = new Carts({
+      customerId: newCustomerId,
+      products: [],
+      active: true,
     });
+  }
+  cart.products.push({
+    sku: cartReq.sku,
+    variant: cartReq.variant,
+    qty: cartReq.qty,
+    title: product.title,
+    thumbnail: product.thumbnail,
   });
+  await cart.save();
+  return tokenizedCart(cart);
 };
 
 module.exports = {

@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
-import { AuthenticationError } from "apollo-server-express";
+const { AuthenticationError } = require("apollo-server-express");
+const { Products } = require("../db/connection");
 const moment = require("moment");
 const { environment } = require("../config/config");
 const env = process.env.NODE_ENV || "development";
@@ -41,4 +42,18 @@ exports.reqContext = async ({ req }) => {
     console.log(err);
     throw new AuthenticationError(`INVALID_TOKEN`);
   }
+};
+
+exports.lookupProductVariant = async (cartReq) => {
+  return await Products.findOne({
+    _id: cartReq.sku,
+    "variants.id": cartReq.variant,
+  });
+};
+
+exports.stripCartObject = (cart, newCustomerId) => {
+  cart._id = undefined;
+  cart.isNew = true;
+  cart.active = true;
+  cart.customerId = newCustomerId;
 };
