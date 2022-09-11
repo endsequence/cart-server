@@ -6,8 +6,8 @@
     "brand": "Apple",
     "thumbnail": "https://dummyjson.com/image/i/products/1/thumbnail.jpg",
     "variants": [
-      { "id": "sku_iphone9_01", "qty": 23 },
-      { "id": "sku_iphone9_02", "qty": 34 }
+      { "id": "sku_iphone9_01", "qty": 23, "label": "128GB" },
+      { "id": "sku_iphone9_02", "qty": 34, "label": "256GB" }
     ]
   },
   {
@@ -17,8 +17,8 @@
     "brand": "Apple",
     "thumbnail": "https://dummyjson.com/image/i/products/2/thumbnail.jpg",
     "variants": [
-      { "id": "sku_iphonex_01", "qty": 13 },
-      { "id": "sku_iphonex_02", "qty": 34 }
+      { "id": "sku_iphonex_01", "qty": 13, "label": "128GB" },
+      { "id": "sku_iphonex_02", "qty": 34, "label": "256GB" }
     ]
   },
   {
@@ -28,8 +28,8 @@
     "brand": "Samsung",
     "thumbnail": "https://dummyjson.com/image/i/products/3/thumbnail.jpg",
     "variants": [
-      { "id": "sku_samuni9_01", "qty": 13 },
-      { "id": "sku_samuni9_02", "qty": 34 }
+      { "id": "sku_samuni9_01", "qty": 13, "label": "128GB" },
+      { "id": "sku_samuni9_02", "qty": 34, "label": "256GB" }
     ]
   },
   {
@@ -39,8 +39,8 @@
     "brand": "OPPO",
     "thumbnail": "https://dummyjson.com/image/i/products/4/thumbnail.jpg",
     "variants": [
-      { "id": "sku_oppof19_01", "qty": 13 },
-      { "id": "sku_oppof19_02", "qty": 34 }
+      { "id": "sku_oppof19_01", "qty": 13, "label": "128GB" },
+      { "id": "sku_oppof19_02", "qty": 34, "label": "256GB" }
     ]
   },
   {
@@ -50,8 +50,8 @@
     "brand": "Huawei",
     "thumbnail": "https://dummyjson.com/image/i/products/5/thumbnail.jpg",
     "variants": [
-      { "id": "sku_huaweip30_01", "qty": 13 },
-      { "id": "sku_huaweip30_02", "qty": 34 }
+      { "id": "sku_huaweip30_01", "qty": 13, "label": "256GB" },
+      { "id": "sku_huaweip30_02", "qty": 34, "label": "512GB" }
     ]
   },
   {
@@ -61,8 +61,8 @@
     "brand": "APPle",
     "thumbnail": "https://dummyjson.com/image/i/products/6/thumbnail.png",
     "variants": [
-      { "id": "sku_macpro_01", "qty": 13 },
-      { "id": "sku_macpro_02", "qty": 34 }
+      { "id": "sku_macpro_01", "qty": 13, "label": "256GB" },
+      { "id": "sku_macpro_02", "qty": 34, "label": "512GB" }
     ]
   },
   {
@@ -72,8 +72,8 @@
     "brand": "Samsung",
     "thumbnail": "https://dummyjson.com/image/i/products/7/thumbnail.jpg",
     "variants": [
-      { "id": "sku_samgal_01", "qty": 13 },
-      { "id": "sku_samgal_02", "qty": 34 }
+      { "id": "sku_samgal_01", "qty": 13, "label": "128GB" },
+      { "id": "sku_samgal_02", "qty": 34, "label": "256GB" }
     ]
   },
   {
@@ -83,8 +83,8 @@
     "brand": "Microsoft Surface",
     "thumbnail": "https://dummyjson.com/image/i/products/8/thumbnail.jpg",
     "variants": [
-      { "id": "sku_mssur_01", "qty": 13 },
-      { "id": "sku_mssur_02", "qty": 34 }
+      { "id": "sku_mssur_01", "qty": 13, "label": "512GB" },
+      { "id": "sku_mssur_02", "qty": 34, "label": "1TB" }
     ]
   },
   {
@@ -94,8 +94,8 @@
     "brand": "Infinix",
     "thumbnail": "https://dummyjson.com/image/i/products/9/thumbnail.jpg",
     "variants": [
-      { "id": "sku_infibook_01", "qty": 13 },
-      { "id": "sku_infibook_02", "qty": 34 }
+      { "id": "sku_infibook_01", "qty": 13, "label": "128GB" },
+      { "id": "sku_infibook_02", "qty": 34, "label": "256GB" }
     ]
   },
   {
@@ -105,8 +105,8 @@
     "brand": "HP Pavilion",
     "thumbnail": "https://dummyjson.com/image/i/products/10/thumbnail.jpeg",
     "variants": [
-      { "id": "sku_hppav15_01", "qty": 13 },
-      { "id": "sku_hppav15_02", "qty": 34 }
+      { "id": "sku_hppav15_01", "qty": 13, "label": "256GB" },
+      { "id": "sku_hppav15_02", "qty": 34, "label": "1TB" }
     ]
   }
 ]

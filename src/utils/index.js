@@ -7,7 +7,7 @@ const env = process.env.NODE_ENV || "development";
 
 exports.createJwt = (customerId, cartId) => {
   const token = jwt.sign({ customerId, cartId }, environment[env].jwtSecret, {
-    expiresIn: "2m",
+    expiresIn: "1m",
   });
   return token;
 };
@@ -51,9 +51,21 @@ exports.lookupProductVariant = async (cartReq) => {
   });
 };
 
+exports.updateQtyOfProduct = async (cartReq, newQty) => {
+  const result = await Products.findOneAndUpdate(
+    {
+      _id: cartReq.sku,
+      "variants.id": cartReq.variant,
+    },
+    {
+      $set: { "variants.$.qty": newQty },
+    }
+  );
+};
+
 exports.stripCartObject = (cart, newCustomerId) => {
   cart._id = undefined;
   cart.isNew = true;
-  cart.active = true;
+  // cart.active = true;
   cart.customerId = newCustomerId;
 };

@@ -1,9 +1,10 @@
 const { ObjectId } = require("mongodb");
-const { Carts } = require("../../db/connection.js");
+const { Carts, Products } = require("../../db/connection.js");
 const {
   createJwt,
   lookupProductVariant,
   stripCartObject,
+  updateQtyOfProduct,
 } = require("../../utils/index");
 
 const tokenizedCart = (cart) => {
@@ -28,7 +29,7 @@ const addProductToCartResolver = async ({ context, cartReq }) => {
   const product = await lookupProductVariant(cartReq);
   if (!product) throw new Error("Product not found!");
   const variant = product.variants.find((el) => el.id === cartReq.variant);
-  console.log({ product, variant });
+  //   console.log({ product, variant });
   if (variant.qty < cartReq.qty)
     throw new Error("Product inventory not available!");
 
@@ -40,7 +41,7 @@ const addProductToCartResolver = async ({ context, cartReq }) => {
     cart = new Carts({
       customerId: newCustomerId,
       products: [],
-      active: true,
+      //   active: true,
     });
   }
   cart.products.push({
@@ -51,6 +52,7 @@ const addProductToCartResolver = async ({ context, cartReq }) => {
     thumbnail: product.thumbnail,
   });
   await cart.save();
+  updateQtyOfProduct(cartReq, Math.max(variant.qty - cartReq.qty, 0));
   return tokenizedCart(cart);
 };
 

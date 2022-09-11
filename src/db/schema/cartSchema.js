@@ -7,7 +7,7 @@ exports.cartSchema = new mongoose.Schema({
   products: {
     type: Array,
   },
-  active: {
-    type: Boolean,
-  },
+  // active: {
+  //   type: Boolean,
+  // },
 });

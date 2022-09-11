@@ -36,6 +36,7 @@ exports.typeDefs = gql`
   type Variant {
     id: String
     qty: Int
+    label: String
   }
 
   type Query {
