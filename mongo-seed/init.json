@@ -17,7 +17,7 @@
     "brand": "Apple",
     "thumbnail": "https://dummyjson.com/image/i/products/2/thumbnail.jpg",
     "variants": [
-      { "id": "sku_iphonex_01", "qty": 13, "label": "128GB" },
+      { "id": "sku_iphonex_01", "qty": 2, "label": "128GB" },
       { "id": "sku_iphonex_02", "qty": 34, "label": "256GB" }
     ]
   },
@@ -29,7 +29,7 @@
     "thumbnail": "https://dummyjson.com/image/i/products/3/thumbnail.jpg",
     "variants": [
       { "id": "sku_samuni9_01", "qty": 13, "label": "128GB" },
-      { "id": "sku_samuni9_02", "qty": 34, "label": "256GB" }
+      { "id": "sku_samuni9_02", "qty": 1, "label": "256GB" }
     ]
   },
   {
@@ -51,7 +51,7 @@
     "thumbnail": "https://dummyjson.com/image/i/products/5/thumbnail.jpg",
     "variants": [
       { "id": "sku_huaweip30_01", "qty": 13, "label": "256GB" },
-      { "id": "sku_huaweip30_02", "qty": 34, "label": "512GB" }
+      { "id": "sku_huaweip30_02", "qty": 2, "label": "512GB" }
     ]
   },
   {
@@ -61,8 +61,8 @@
     "brand": "APPle",
     "thumbnail": "https://dummyjson.com/image/i/products/6/thumbnail.png",
     "variants": [
-      { "id": "sku_macpro_01", "qty": 13, "label": "256GB" },
-      { "id": "sku_macpro_02", "qty": 34, "label": "512GB" }
+      { "id": "sku_macpro_01", "qty": 3, "label": "256GB" },
+      { "id": "sku_macpro_02", "qty": 1, "label": "512GB" }
     ]
   },
   {

@@ -41,6 +41,7 @@ const addProductToCartResolver = async ({ context, cartReq }) => {
     cart = new Carts({
       customerId: newCustomerId,
       products: [],
+      createdAt: new Date(),
       //   active: true,
     });
   }

@@ -68,4 +68,5 @@ exports.stripCartObject = (cart, newCustomerId) => {
   cart.isNew = true;
   // cart.active = true;
   cart.customerId = newCustomerId;
+  cart.createdAt = new Date()
 };
