@@ -16,3 +16,6 @@ Seed data (10 products) will be inserted automatically into mongo via /mongo-see
 
 ## GraphQL
 Point to http://localhost:7500/graphql to interact with graphql interface.
+
+## Authentication
+JWT is used for authentication. Each JWT is created with an expiry of 1 minute(s) and will be refreshed on the cart page.
